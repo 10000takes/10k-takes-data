@@ -32,6 +32,13 @@ jobs:
           FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
         run: python collect_facebook.py
  
+      - name: Collect Instagram followers (main account)
+        continue-on-error: true
+        env:
+          INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
+          FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+        run: python collect_instagram.py
+ 
       - name: Save results
         if: always()
         run: |
