@@ -20,11 +20,20 @@ jobs:
           python-version: "3.12"
  
       - name: Collect YouTube subscribers
+        continue-on-error: true
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: python collect_youtube.py
  
+      - name: Collect Facebook followers (main Page)
+        continue-on-error: true
+        env:
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+        run: python collect_facebook.py
+ 
       - name: Save results
+        if: always()
         run: |
           git config user.name "follower-bot"
           git config user.email "follower-bot@users.noreply.github.com"
@@ -33,6 +42,7 @@ jobs:
           git push
  
       - name: Refresh the dashboard site
+        if: always()
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
