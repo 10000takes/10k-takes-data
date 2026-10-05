@@ -39,6 +39,12 @@ jobs:
           FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
         run: python collect_instagram.py
  
+      - name: Collect X/Twitter followers (all accounts)
+        continue-on-error: true
+        env:
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+        run: python collect_x.py
+ 
       - name: Save results
         if: always()
         run: |
