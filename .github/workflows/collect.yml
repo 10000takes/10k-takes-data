@@ -45,6 +45,14 @@ jobs:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
         run: python collect_x.py
  
+      - name: Collect TikTok followers
+        continue-on-error: true
+        env:
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          TIKTOK_REFRESH_TOKEN_10K_TAKES: ${{ secrets.TIKTOK_REFRESH_TOKEN_10K_TAKES }}
+        run: python collect_tiktok.py
+ 
       - name: Save results
         if: always()
         run: |
