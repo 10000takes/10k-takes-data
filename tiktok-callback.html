@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>TikTok authorization code</title>
+<style>
+body{font:16px/1.5 system-ui,Arial,sans-serif;max-width:640px;margin:40px auto;padding:0 16px;color:#15202b;background:#fff}
+@media(prefers-color-scheme:dark){body{background:#0f161d;color:#e9eef2}}
+textarea{width:100%;height:110px;font:13px ui-monospace,Menlo,monospace}
+button{font:600 15px system-ui;padding:8px 14px;border:0;border-radius:5px;background:#1d5c48;color:#fff;cursor:pointer}
+</style></head><body>
+<h1>TikTok authorization code</h1>
+<p id="status">Reading the address…</p>
+<textarea id="code" readonly hidden></textarea>
+<p><button id="copy" hidden>Copy code</button></p>
+<p>Paste this code into the setup script on your computer within a few minutes. It works only once. Do not share it.</p>
+<script>
+const p=new URLSearchParams(location.search),code=p.get('code'),err=p.get('error_description')||p.get('error');
+const s=document.getElementById('status'),t=document.getElementById('code'),b=document.getElementById('copy');
+if(code){s.textContent='Authorization succeeded. Your code:';t.value=code;t.hidden=false;b.hidden=false;
+ b.onclick=()=>{t.select();navigator.clipboard&&navigator.clipboard.writeText(t.value);b.textContent='Copied'}}
+else{s.textContent=err?('TikTok returned an error: '+err):'No code found in the address. Start again from the authorization link.'}
+</script></body></html>
