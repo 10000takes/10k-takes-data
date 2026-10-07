@@ -53,6 +53,12 @@ jobs:
           TIKTOK_REFRESH_TOKEN_10K_TAKES: ${{ secrets.TIKTOK_REFRESH_TOKEN_10K_TAKES }}
         run: python collect_tiktok.py
  
+      - name: Collect Threads followers
+        continue-on-error: true
+        env:
+          THREADS_ACCESS_TOKEN_10K_TAKES: ${{ secrets.THREADS_ACCESS_TOKEN_10K_TAKES }}
+        run: python collect_threads.py
+ 
       - name: Save results
         if: always()
         run: |
