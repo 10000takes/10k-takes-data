@@ -52,6 +52,13 @@ jobs:
           FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
         run: python collect_instagram.py
  
+      - name: Collect Instagram views and engagement
+        continue-on-error: true
+        env:
+          INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
+          FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+        run: python collect_instagram_metrics.py
+ 
       - name: Collect X/Twitter followers (all accounts)
         continue-on-error: true
         env:
