@@ -65,6 +65,12 @@ jobs:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
         run: python collect_x.py
  
+      - name: Collect X/Twitter views and engagement
+        continue-on-error: true
+        env:
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+        run: python collect_x_metrics.py
+ 
       - name: Collect TikTok followers
         continue-on-error: true
         env:
