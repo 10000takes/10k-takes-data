@@ -9,6 +9,10 @@ permissions:
   contents: write
   pages: write           # needed to save followers.csv back to the repo
  
+concurrency:
+  group: collect-data
+  cancel-in-progress: false
+ 
 jobs:
   collect:
     runs-on: ubuntu-latest
@@ -58,18 +62,6 @@ jobs:
           INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
           FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
         run: python collect_instagram_metrics.py
- 
-      - name: Collect X/Twitter followers (all accounts)
-        continue-on-error: true
-        env:
-          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
-        run: python collect_x.py
- 
-      - name: Collect X/Twitter views and engagement
-        continue-on-error: true
-        env:
-          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
-        run: python collect_x_metrics.py
  
       - name: Collect TikTok followers
         continue-on-error: true
