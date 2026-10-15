@@ -49,6 +49,12 @@ jobs:
           FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
         run: python collect_facebook_metrics.py
  
+      - name: Collect Facebook subsidiary Pages
+        continue-on-error: true
+        env:
+          FACEBOOK_SYSTEM_USER_TOKEN: ${{ secrets.FACEBOOK_SYSTEM_USER_TOKEN }}
+        run: python collect_facebook_subsidiaries.py
+ 
       - name: Collect Instagram followers (main account)
         continue-on-error: true
         env:
@@ -69,6 +75,11 @@ jobs:
           TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
           TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
           TIKTOK_REFRESH_TOKEN_10K_TAKES: ${{ secrets.TIKTOK_REFRESH_TOKEN_10K_TAKES }}
+          TIKTOK_REFRESH_TOKEN_WILD_TAKES: ${{ secrets.TIKTOK_REFRESH_TOKEN_WILD_TAKES }}
+          TIKTOK_REFRESH_TOKEN_10K_HOWLS: ${{ secrets.TIKTOK_REFRESH_TOKEN_10K_HOWLS }}
+          TIKTOK_REFRESH_TOKEN_STATE_OF_SKOL: ${{ secrets.TIKTOK_REFRESH_TOKEN_STATE_OF_SKOL }}
+          TIKTOK_REFRESH_TOKEN_THE_UNDERLINE: ${{ secrets.TIKTOK_REFRESH_TOKEN_THE_UNDERLINE }}
+          TIKTOK_REFRESH_TOKEN_CAPTAINS_PATCH: ${{ secrets.TIKTOK_REFRESH_TOKEN_CAPTAINS_PATCH }}
         run: python collect_tiktok.py
  
       - name: Collect Threads followers
