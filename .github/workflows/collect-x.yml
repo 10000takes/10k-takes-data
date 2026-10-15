@@ -1,5 +1,5 @@
 name: Collect X data (weekly, Fridays 6 AM Central)
-
+ 
 on:
   schedule:
     # GitHub schedules run in UTC. Two entries cover Central daylight time (UTC-5)
@@ -8,15 +8,15 @@ on:
     - cron: "7 11 * * 5"
     - cron: "7 12 * * 5"
   workflow_dispatch:        # lets you run it by hand from the Actions tab
-
+ 
 permissions:
   contents: write
   pages: write
-
+ 
 concurrency:
   group: collect-data
   cancel-in-progress: false
-
+ 
 jobs:
   collect-x:
     runs-on: ubuntu-latest
@@ -30,29 +30,29 @@ jobs:
             echo "run=false" >> "$GITHUB_OUTPUT"
             echo "Not 6 AM Central right now, so this run is skipped."
           fi
-
+ 
       - uses: actions/checkout@v4
         if: steps.gate.outputs.run == 'true'
-
+ 
       - uses: actions/setup-python@v5
         if: steps.gate.outputs.run == 'true'
         with:
           python-version: "3.12"
-
+ 
       - name: Collect X/Twitter followers (all accounts)
         if: steps.gate.outputs.run == 'true'
         continue-on-error: true
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
         run: python collect_x.py
-
+ 
       - name: Collect X/Twitter views and engagement (all accounts)
         if: steps.gate.outputs.run == 'true'
         continue-on-error: true
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
         run: python collect_x_metrics.py
-
+ 
       - name: Save results
         if: steps.gate.outputs.run == 'true'
         run: |
@@ -61,8 +61,9 @@ jobs:
           git add followers.csv
           [ -f metrics.csv ] && git add metrics.csv || true
           git diff --staged --quiet || git commit -m "X snapshot $(date -u +%F)"
+          git pull --rebase --autostash
           git push
-
+ 
       - name: Refresh the dashboard site
         if: steps.gate.outputs.run == 'true'
         env:
