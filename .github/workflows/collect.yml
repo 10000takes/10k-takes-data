@@ -96,6 +96,7 @@ jobs:
           git add followers.csv
           [ -f metrics.csv ] && git add metrics.csv || true
           git diff --staged --quiet || git commit -m "Follower snapshot $(date -u +%F)"
+          git pull --rebase --autostash
           git push
  
       - name: Refresh the dashboard site
