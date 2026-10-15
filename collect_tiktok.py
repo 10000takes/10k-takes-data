@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 """
 10K Takes: TikTok follower collector.
-
+ 
 For each account below, trades its saved refresh token for a fresh access
 token, reads the follower count, and saves a dated row to followers.csv:
     date,account,platform,followers
-
+ 
 Environment variables (GitHub secrets):
   TIKTOK_CLIENT_KEY, TIKTOK_CLIENT_SECRET
   one refresh-token variable per account (names in ACCOUNTS below)
-
+ 
 It also records views and engagement in metrics.csv (date,account,platform,
 metric,value) when the account was authorized with the video.list scope:
   views_7d         views so far on videos posted in the last 7 days
   engagements_7d   likes + comments + shares on those videos
 Without that scope it quietly skips this part. Both jobs share ONE token
 refresh per run, which matters because TikTok may rotate refresh tokens.
-
+ 
 Accounts whose token variable is empty are skipped, so you can add accounts
 one at a time. Uses only the Python standard library.
 """
@@ -29,14 +29,14 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import date
-
+ 
 ACCOUNTS = {
     "10K Takes": "TIKTOK_REFRESH_TOKEN_10K_TAKES",
-    # "Wild Takes": "TIKTOK_REFRESH_TOKEN_WILD_TAKES",
-    # "10K Howls": "TIKTOK_REFRESH_TOKEN_10K_HOWLS",
-    # "State of Skol": "TIKTOK_REFRESH_TOKEN_STATE_OF_SKOL",
-    # "The Underline": "TIKTOK_REFRESH_TOKEN_THE_UNDERLINE",
-    # "Captain's Patch": "TIKTOK_REFRESH_TOKEN_CAPTAINS_PATCH",
+    "Wild Takes": "TIKTOK_REFRESH_TOKEN_WILD_TAKES",
+    "10K Howls": "TIKTOK_REFRESH_TOKEN_10K_HOWLS",
+    "State of Skol": "TIKTOK_REFRESH_TOKEN_STATE_OF_SKOL",
+    "The Underline": "TIKTOK_REFRESH_TOKEN_THE_UNDERLINE",
+    "Captain's Patch": "TIKTOK_REFRESH_TOKEN_CAPTAINS_PATCH",
 }
 PLATFORM = "TikTok"
 OUTPUT_FILE = "followers.csv"
@@ -46,8 +46,8 @@ METRICS_FILE = "metrics.csv"
 METRICS_HEADER = ["date", "account", "platform", "metric", "value"]
 VIDEO_URL = "https://open.tiktokapis.com/v2/video/list/?fields=id,create_time,view_count,like_count,comment_count,share_count"
 INFO_URL = "https://open.tiktokapis.com/v2/user/info/?fields=open_id,display_name,follower_count"
-
-
+ 
+ 
 def http(req, label):
     try:
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -56,8 +56,8 @@ def http(req, label):
         raise RuntimeError("{} error {}: {}".format(label, e.code, e.read().decode("utf-8", "replace")[:300]))
     except urllib.error.URLError as e:
         raise RuntimeError("{} unreachable: {}".format(label, e.reason))
-
-
+ 
+ 
 def refresh(key, secret, refresh_token):
     body = urllib.parse.urlencode({
         "client_key": key, "client_secret": secret,
@@ -68,8 +68,8 @@ def refresh(key, secret, refresh_token):
     if "access_token" not in data:
         raise RuntimeError("Token refresh failed: {}".format(json.dumps(data)[:300]))
     return data
-
-
+ 
+ 
 def followers(access_token):
     req = urllib.request.Request(INFO_URL, headers={"Authorization": "Bearer " + access_token})
     data = http(req, "User info")
@@ -78,8 +78,8 @@ def followers(access_token):
         raise RuntimeError("No follower_count returned (is user.info.stats granted?): {}".format(
             json.dumps(data)[:300]))
     return int(user["follower_count"]), user.get("display_name", "")
-
-
+ 
+ 
 def week_metrics(access_token):
     """Views and engagement on videos created in the last 7 days (newest first)."""
     cutoff = time.time() - 7 * 86400
@@ -108,8 +108,8 @@ def week_metrics(access_token):
         if done or not page.get("has_more"):
             break
     return views, engagements
-
-
+ 
+ 
 def save_metric_rows(new_rows):
     rows = []
     if os.path.exists(METRICS_FILE):
@@ -122,8 +122,8 @@ def save_metric_rows(new_rows):
         w = csv.writer(f)
         w.writerow(METRICS_HEADER)
         w.writerows(rows)
-
-
+ 
+ 
 def save_rows(new_rows):
     rows = []
     if os.path.exists(OUTPUT_FILE):
@@ -136,8 +136,8 @@ def save_rows(new_rows):
         w = csv.writer(f)
         w.writerow(HEADER)
         w.writerows(rows)
-
-
+ 
+ 
 def main():
     key = os.environ.get("TIKTOK_CLIENT_KEY", "").strip()
     secret = os.environ.get("TIKTOK_CLIENT_SECRET", "").strip()
@@ -175,7 +175,7 @@ def main():
         save_metric_rows(metric_rows)
     if failed:
         sys.exit("Failed: " + ", ".join(failed))
-
-
+ 
+ 
 if __name__ == "__main__":
     main()
