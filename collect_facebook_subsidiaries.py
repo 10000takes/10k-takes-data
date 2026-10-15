@@ -28,11 +28,11 @@ from datetime import date
 GRAPH = "v26.0"
 PLATFORM = "Facebook"
 PAGES = {
-    "Wild Takes": "REPLACE_WILD_TAKES_PAGE_ID",
+    "Wild Takes": "786488311204090",
     "10K Howls": "REPLACE_10K_HOWLS_PAGE_ID",
     "State of Skol": "REPLACE_STATE_OF_SKOL_PAGE_ID",
     "The Underline": "731052936753599",
-    "Captain's Patch": "REPLACE_CAPTAINS_PATCH_PAGE_ID",
+    "Captain's Patch": "1444449392073981",
 }
 METRICS = {"views_7d": "page_media_view", "engagements_7d": "page_post_engagements"}
 FOLLOWERS_FILE, FHEADER = "followers.csv", ["date", "account", "platform", "followers"]
