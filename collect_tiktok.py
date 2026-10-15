@@ -84,6 +84,8 @@ def week_metrics(access_token):
     """Views and engagement on videos created in the last 7 days (newest first)."""
     cutoff = time.time() - 7 * 86400
     views = engagements = cursor = pages = 0
+    seen = recent = 0
+    newest = 0
     cursor = None
     while pages < 5:
         body = {"max_count": 20}
@@ -98,16 +100,19 @@ def week_metrics(access_token):
         page = data.get("data") or {}
         done = False
         for v in page.get("videos", []):
+            seen += 1
+            newest = max(newest, v.get("create_time", 0))
             if v.get("create_time", 0) < cutoff:
                 done = True
                 continue
+            recent += 1
             views += int(v.get("view_count", 0))
             engagements += sum(int(v.get(k, 0)) for k in ("like_count", "comment_count", "share_count"))
         pages += 1
         cursor = page.get("cursor")
         if done or not page.get("has_more"):
             break
-    return views, engagements
+    return views, engagements, seen, recent, newest
  
  
 def save_metric_rows(new_rows):
@@ -159,10 +164,12 @@ def main():
         new_rows.append([today, account, PLATFORM, str(count)])
         print("{} | {} | {} ({}) | {:,}".format(today, account, PLATFORM, name, count))
         try:
-            views, engagements = week_metrics(tok["access_token"])
+            views, engagements, seen, recent, newest = week_metrics(tok["access_token"])
             metric_rows += [[today, account, PLATFORM, "views_7d", str(views)],
                             [today, account, PLATFORM, "engagements_7d", str(engagements)]]
             print("   last 7 days of videos: {:,} views, {:,} engagements".format(views, engagements))
+            print("   ({} videos returned, {} posted in the last 7 days, newest posted {})".format(
+                seen, recent, time.strftime("%Y-%m-%d", time.gmtime(newest)) if newest else "n/a"))
         except RuntimeError as e:
             print("::notice::{} views/engagement skipped (needs the video.list scope): {}".format(account, e))
         new_token = tok.get("refresh_token")
