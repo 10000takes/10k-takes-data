@@ -29,7 +29,7 @@ GRAPH = "v26.0"
 PLATFORM = "Facebook"
 PAGES = {
     "Wild Takes": "786488311204090",
-    "10K Howls": "REPLACE_10K_HOWLS_PAGE_ID",
+    "10K Howls": "715792751615461",
     "State of Skol": "REPLACE_STATE_OF_SKOL_PAGE_ID",
     "The Underline": "731052936753599",
     "Captain's Patch": "1444449392073981",
