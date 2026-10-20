@@ -30,7 +30,7 @@ PLATFORM = "Facebook"
 PAGES = {
     "Wild Takes": "786488311204090",
     "10K Howls": "715792751615461",
-    "State of Skol": "REPLACE_STATE_OF_SKOL_PAGE_ID",
+    "State of Skol": "685113294691308",
     "The Underline": "731052936753599",
     "Captain's Patch": "1444449392073981",
 }
