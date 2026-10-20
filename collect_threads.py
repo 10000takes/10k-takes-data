@@ -28,11 +28,11 @@ from datetime import date
  
 ACCOUNTS = {
     "10K Takes": "THREADS_ACCESS_TOKEN_10K_TAKES",
-    # "Wild Takes": "THREADS_ACCESS_TOKEN_WILD_TAKES",
-    # "10K Howls": "THREADS_ACCESS_TOKEN_10K_HOWLS",
-    # "State of Skol": "THREADS_ACCESS_TOKEN_STATE_OF_SKOL",
-    # "The Underline": "THREADS_ACCESS_TOKEN_THE_UNDERLINE",
-    # "Captain's Patch": "THREADS_ACCESS_TOKEN_CAPTAINS_PATCH",
+    "Wild Takes": "THREADS_ACCESS_TOKEN_WILD_TAKES",
+    "10K Howls": "THREADS_ACCESS_TOKEN_10K_HOWLS",
+    "State of Skol": "THREADS_ACCESS_TOKEN_STATE_OF_SKOL",
+    "The Underline": "THREADS_ACCESS_TOKEN_THE_UNDERLINE",
+    "Captain's Patch": "THREADS_ACCESS_TOKEN_CAPTAINS_PATCH",
 }
 PLATFORM = "Threads"
 OUTPUT_FILE = "followers.csv"
