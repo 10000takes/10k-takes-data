@@ -227,32 +227,36 @@ date,account,platform,metric,value
 2026-10-19,Wild Takes,TikTok,views_7d,0
 2026-10-20,10K Howls,Facebook,engagements_7d,0
 2026-10-20,10K Howls,Facebook,views_7d,1
-2026-10-20,10K Howls,Instagram,engagements_7d,730
-2026-10-20,10K Howls,Instagram,views_7d,4781
+2026-10-20,10K Howls,Instagram,engagements_7d,742
+2026-10-20,10K Howls,Instagram,views_7d,4894
+2026-10-20,10K Howls,Threads,engagements_7d,0
+2026-10-20,10K Howls,Threads,views_7d,5
 2026-10-20,10K Howls,TikTok,engagements_7d,0
 2026-10-20,10K Howls,TikTok,views_7d,0
-2026-10-20,10K Takes,Facebook,engagements_7d,73114
-2026-10-20,10K Takes,Facebook,views_7d,1077053
-2026-10-20,10K Takes,Instagram,engagements_7d,51920
-2026-10-20,10K Takes,Instagram,views_7d,794612
-2026-10-20,10K Takes,Threads,engagements_7d,160
-2026-10-20,10K Takes,Threads,views_7d,10747
-2026-10-20,10K Takes,TikTok,engagements_7d,21540
-2026-10-20,10K Takes,TikTok,views_7d,336277
-2026-10-20,10K Takes,YouTube,engagements_7d,1686
-2026-10-20,10K Takes,YouTube,engagements_total,15633
+2026-10-20,10K Takes,Facebook,engagements_7d,73144
+2026-10-20,10K Takes,Facebook,views_7d,1077669
+2026-10-20,10K Takes,Instagram,engagements_7d,51957
+2026-10-20,10K Takes,Instagram,views_7d,795770
+2026-10-20,10K Takes,Threads,engagements_7d,164
+2026-10-20,10K Takes,Threads,views_7d,10754
+2026-10-20,10K Takes,TikTok,engagements_7d,21550
+2026-10-20,10K Takes,TikTok,views_7d,336483
+2026-10-20,10K Takes,YouTube,engagements_7d,1687
+2026-10-20,10K Takes,YouTube,engagements_total,15634
 2026-10-20,10K Takes,YouTube,views_7d,209853
 2026-10-20,10K Takes,YouTube,views_total,8270842
 2026-10-20,Captain's Patch,Facebook,engagements_7d,0
 2026-10-20,Captain's Patch,Facebook,views_7d,7
 2026-10-20,Captain's Patch,Instagram,engagements_7d,1038
-2026-10-20,Captain's Patch,Instagram,views_7d,30319
+2026-10-20,Captain's Patch,Instagram,views_7d,30345
+2026-10-20,Captain's Patch,Threads,engagements_7d,0
+2026-10-20,Captain's Patch,Threads,views_7d,0
 2026-10-20,Captain's Patch,TikTok,engagements_7d,4
 2026-10-20,Captain's Patch,TikTok,views_7d,90
 2026-10-20,State of Skol,Facebook,engagements_7d,30
-2026-10-20,State of Skol,Facebook,views_7d,877
-2026-10-20,State of Skol,Instagram,engagements_7d,3839
-2026-10-20,State of Skol,Instagram,views_7d,38592
+2026-10-20,State of Skol,Facebook,views_7d,879
+2026-10-20,State of Skol,Instagram,engagements_7d,3847
+2026-10-20,State of Skol,Instagram,views_7d,38638
 2026-10-20,State of Skol,Threads,engagements_7d,17
 2026-10-20,State of Skol,Threads,views_7d,1249
 2026-10-20,State of Skol,TikTok,engagements_7d,3
@@ -266,9 +270,9 @@ date,account,platform,metric,value
 2026-10-20,The Underline,TikTok,engagements_7d,0
 2026-10-20,The Underline,TikTok,views_7d,0
 2026-10-20,Wild Takes,Facebook,engagements_7d,756
-2026-10-20,Wild Takes,Facebook,views_7d,20417
-2026-10-20,Wild Takes,Instagram,engagements_7d,30850
-2026-10-20,Wild Takes,Instagram,views_7d,314427
+2026-10-20,Wild Takes,Facebook,views_7d,20427
+2026-10-20,Wild Takes,Instagram,engagements_7d,30866
+2026-10-20,Wild Takes,Instagram,views_7d,314991
 2026-10-20,Wild Takes,Threads,engagements_7d,80
 2026-10-20,Wild Takes,Threads,views_7d,1778
 2026-10-20,Wild Takes,TikTok,engagements_7d,0
