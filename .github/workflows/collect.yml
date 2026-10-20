@@ -55,6 +55,12 @@ jobs:
           FACEBOOK_SYSTEM_USER_TOKEN: ${{ secrets.FACEBOOK_SYSTEM_USER_TOKEN }}
         run: python collect_facebook_subsidiaries.py
  
+      - name: Collect Instagram subsidiary accounts
+        continue-on-error: true
+        env:
+          FACEBOOK_SYSTEM_USER_TOKEN: ${{ secrets.FACEBOOK_SYSTEM_USER_TOKEN }}
+        run: python collect_instagram_subsidiaries.py
+ 
       - name: Collect Instagram followers (main account)
         continue-on-error: true
         env:
@@ -91,13 +97,8 @@ jobs:
       - name: Save results
         if: always()
         run: |
-          git config user.name "follower-bot"
-          git config user.email "follower-bot@users.noreply.github.com"
-          git add followers.csv
-          [ -f metrics.csv ] && git add metrics.csv || true
-          git diff --staged --quiet || git commit -m "Follower snapshot $(date -u +%F)"
-          git pull --rebase --autostash
-          git push
+          cp save_results.sh /tmp/save_results.sh
+          bash /tmp/save_results.sh "Follower snapshot $(date -u +%F)"
  
       - name: Refresh the dashboard site
         if: always()
