@@ -92,6 +92,11 @@ jobs:
         continue-on-error: true
         env:
           THREADS_ACCESS_TOKEN_10K_TAKES: ${{ secrets.THREADS_ACCESS_TOKEN_10K_TAKES }}
+          THREADS_ACCESS_TOKEN_WILD_TAKES: ${{ secrets.THREADS_ACCESS_TOKEN_WILD_TAKES }}
+          THREADS_ACCESS_TOKEN_10K_HOWLS: ${{ secrets.THREADS_ACCESS_TOKEN_10K_HOWLS }}
+          THREADS_ACCESS_TOKEN_STATE_OF_SKOL: ${{ secrets.THREADS_ACCESS_TOKEN_STATE_OF_SKOL }}
+          THREADS_ACCESS_TOKEN_THE_UNDERLINE: ${{ secrets.THREADS_ACCESS_TOKEN_THE_UNDERLINE }}
+          THREADS_ACCESS_TOKEN_CAPTAINS_PATCH: ${{ secrets.THREADS_ACCESS_TOKEN_CAPTAINS_PATCH }}
         run: python collect_threads.py
  
       - name: Save results
